@@ -1,0 +1,14 @@
+package org.facturacionUruguay.model;
+
+public class Adenda {
+
+	private int caja;
+
+	public int getCaja() {
+		return caja;
+	}
+
+	public void setCaja(int caja) {
+		this.caja = caja;
+	}
+}

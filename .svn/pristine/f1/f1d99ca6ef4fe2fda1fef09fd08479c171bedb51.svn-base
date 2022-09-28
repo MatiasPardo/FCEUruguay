@@ -1,0 +1,88 @@
+package org.facturacionUruguay.conection;
+
+import java.math.BigDecimal;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.facturacionUruguay.model.DescuentosRecargos;
+import org.facturacionUruguay.model.Detalle;
+import org.facturacionUruguay.model.Receptor;
+import org.facturacionUruguay.model.Referencias;
+import org.facturacionUruguay.model.RequestFactura;
+import org.facturacionUruguay.model.ResponseFactura;
+
+
+public class PruebasUruguay {
+		
+	public static void main(String[] args) throws Exception {	
+		
+		Client client = new Client();
+		client.isProduction(false);
+		
+		RequestFactura fcn = cargarDatosFactura("130097020018",2);
+		
+		ResponseFactura nuevaFactura = null;
+		
+		//creo 10 facturas
+		for(int i=0;i<10;i++){
+			nuevaFactura = client.instanciarFactura().solicitarCae(fcn);
+			System.out.print(nuevaFactura.getEncabezado().getIdDoc().getNumero()+"\n");
+		}
+		
+		//consulto la ultima factura creada
+//		for(int i=0;i<10;i++){
+//			ResponseFactura factura = client.instanciarFactura().buscar("217730670012", "111", "A", "221");//String.valueOf(nuevaFactura.getEncabezado().getIdDoc().getNumero()));
+//			System.out.print(factura.getCae().getId()+"\n");
+//
+//		}
+		
+		
+		
+		
+	}
+
+	private static RequestFactura cargarDatosFactura(String numeroDocumentoReceptor, int tipoDocumento) {
+		RequestFactura fcn = new RequestFactura();
+		
+		Receptor receptor = new Receptor();
+		receptor.setTipoDocumento(tipoDocumento);
+		receptor.setCodigoPais("uy");
+		receptor.setNumeroDocumento(numeroDocumentoReceptor);
+		receptor.setRazonSocial("FERNANDO CABALLERO");
+		receptor.setDireccion("ASENCIO 1360");
+		receptor.setCiudad("YOUNG");
+		receptor.setDepartamento("RIO NEGRO");
+		receptor.setPais("Uruguay");
+		
+		List<Detalle> detalle = new LinkedList<Detalle>();
+		Detalle detail = new Detalle();
+		detail.setIndicadorFacturacion(3);
+		detail.setCantidad(new BigDecimal("3.5"));
+		detail.setIndex(1);
+		detail.setUnidadMedida("KG");
+		detail.setNombreItem("Uvas");
+		detail.setPrecioUnitario(new BigDecimal("70"));
+		detalle.add(detail);
+		
+		//Adenda adenda = new Adenda();
+		//adenda.setCaja(43);
+		
+		fcn.setTipo(111);
+		fcn.setContingencia(false);
+		fcn.setSerie("A");
+		fcn.setTipoMoneda("UYU");
+		fcn.setFormaPago(1);
+		fcn.setMontosBrutos("");
+		fcn.setTipoTraslado(1);
+		fcn.setFechaEmision("20211026");
+		fcn.setReceptor(receptor);
+		fcn.setDetalle(detalle);
+		fcn.setDescuentosRecargos(new LinkedList<DescuentosRecargos>());
+		fcn.setReferencias(new LinkedList<Referencias>());
+//		fcn.setAdenda(adenda);
+		return fcn;
+	}
+
+	
+
+}
