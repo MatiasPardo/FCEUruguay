@@ -4,19 +4,19 @@
 
 Tools for sending electronic remittances in ARBA
 
-#Ambientes
+# Ambientes
 
-##Testing
+## Testing
 
 Web Interface: http://test.facturu.com
 REST API Base URL: http://api.test.facturu.com
 
-##Producción
+## Producción
 
 Web Interface: https://sistema.facturu.com
 REST API Base URL: https://api.facturu.com
 
-###Descripción REST API
+### Descripción REST API
 Todos los servicios ofrecidos por la REST API validan las credenciales del cliente para su
 correcta autenticación y autorización.
 Las credenciales del cliente están compuestas por una API_KEY y una API_SECRET, las
