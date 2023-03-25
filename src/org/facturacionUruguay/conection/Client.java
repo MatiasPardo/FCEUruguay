@@ -13,7 +13,7 @@ public class Client {
 
 	private static final String API_URL_TEST = "http://api.test.facturu.com";
 	private static final String API_URL_PRODUCCION = "https://api.facturu.com";
-	private static String credentialTesting = "d6b9bf4d-23c4-4632-9be0-5421725042c7/6d1d88a4-bb7c-4811-b57d-d8070a57f80e";
+	private static String credentialTesting = "";
 
 	private String apyKey;
 	
